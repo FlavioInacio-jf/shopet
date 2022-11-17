@@ -44,6 +44,16 @@ module.exports = {
                 aceito(results)
             })
         })
+    },
+
+    excluir: (cod_produto) =>{
+        return new Promise((aceito, rejeitado) => {
+
+            db.query('DELETE FROM produtos WHERE cod_produto = ? ', [cod_produto], (error, results) => {
+                if(error) { rejeitado(error); return;}
+                aceito(results)
+            })
+        })
     }
 
 }

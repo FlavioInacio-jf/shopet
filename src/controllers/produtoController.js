@@ -76,5 +76,14 @@ module.exports = {
         }
 
         res.json(json)
+    },
+
+    excluir: async(req, res) =>{
+        let json = {error: '', result: {}}
+
+        await produtoService.excluir(req.params.cod_produto)
+
+        res.json(json)
     }
+    
 }
