@@ -8,7 +8,7 @@ module.exports = {
 
         for(let i in produtos){
             json.result.push({
-                codigo: produtos[i].cod_produto,
+                cod_produto: produtos[i].cod_produto,
                 descricao: produtos[i].nome_produto
             })
             
@@ -19,8 +19,8 @@ module.exports = {
     buscarUm: async(req, res) =>{
         let json = {error: '', result: {}}
 
-        let codigo = req.params.codigo
-        let produdo = await produtoService.buscarUm(codigo)
+        let cod_produto = req.params.cod_produto
+        let produdo = await produtoService.buscarUm(cod_produto)
 
         if(produdo){
             json.result = produdo
@@ -38,9 +38,34 @@ module.exports = {
         let preco_venda = req.body.preco_venda
 
         if(nome_produto && quant_estoque && preco_custo && preco_venda){
-            let produdoCodigo = await produtoService.inserir(nome_produto, quant_estoque, preco_custo, preco_venda)
+            let produdocod_produto = await produtoService.inserir(nome_produto, quant_estoque, preco_custo, preco_venda)
             json.result = {
-                codigo: produdoCodigo,
+                cod_produto: produdocod_produto,
+                nome_produto,
+                quant_estoque,
+                preco_custo,
+                preco_venda
+            }
+        }else{
+            json.error = 'Campos não enviados'
+        }
+
+        res.json(json)
+    },
+
+    alterar: async(req, res) =>{
+        let json = {error: '', result: {}}
+
+        let cod_produto = req.params.cod_produto
+        let nome_produto = req.body.nome_produto
+        let quant_estoque = req.body.quant_estoque
+        let preco_custo = req.body.preco_custo
+        let preco_venda = req.body.preco_venda
+
+        if(cod_produto && nome_produto && quant_estoque && preco_custo && preco_venda){
+           await produtoService.alterar(cod_produto, nome_produto, quant_estoque, preco_custo, preco_venda)
+            json.result = {
+                cod_produto,
                 nome_produto,
                 quant_estoque,
                 preco_custo,
