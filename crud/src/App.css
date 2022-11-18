@@ -1,0 +1,39 @@
+.app--container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.register--container{
+  padding: 10px 20px;
+  border: 3px solid black;
+  border-radius: 5px;
+  margin-top: 20px;
+  background: #08c1ff;
+}
+
+.register--title{
+  text-align: center;
+  margin-bottom: 20px;
+  color: whitesmoke;
+
+}
+
+.register--input{
+  display: block;
+  padding: 7px 0;
+  margin: 10px auto;
+  width: -webkit-fill-available;
+}
+
+.register--button{
+  padding: 2px 5px;
+  align-items: center;
+  width: -webkit-fill-available;
+  background: transparent;
+  border: 1px solid;
+  color: whitesmoke;
+
+}
+

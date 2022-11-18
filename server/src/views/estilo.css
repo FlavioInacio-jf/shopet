@@ -1,0 +1,24 @@
+.fundo{
+    background: #08c1ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+input, button{
+    margin: 10px;
+    padding : 5px;
+    width: -webkit-fill-available;
+}
+
+#entrar{
+    background: transparent;
+    border: 1px solid;
+    color: white;
+    cursor: pointer;
+}
+
+form{
+    width: 300px;
+}
