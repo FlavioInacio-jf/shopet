@@ -9,7 +9,10 @@ module.exports = {
         for(let i in produtos){
             json.result.push({
                 cod_produto: produtos[i].cod_produto,
-                descricao: produtos[i].nome_produto
+                nome_produto: produtos[i].nome_produto,
+                quant_estoque: produtos[i].quant_estoque,
+                preco_custo: produtos[i].preco_custo,
+                preco_venda: produtos[i].preco_venda
             })
             
         }

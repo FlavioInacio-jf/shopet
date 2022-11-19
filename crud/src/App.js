@@ -1,10 +1,15 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import axios from "axios"
 import './App.css';
 
+import Lista from "./componentes/lista";
+
 const baseURL = "http://localhost:3001/api"
+
 function App() {
   const [values, setValues] = useState()
+  const [listProdutos, setListProdutos] = useState()
+  console.log(listProdutos)
 
   const pegarInfo = (value) =>{
     setValues((prevValue) =>({
@@ -27,6 +32,12 @@ function App() {
     });
   }
 
+  useEffect(() => {
+    axios.get("http://localhost:3001/api/buscarProdutos").then((response) => {
+      setListProdutos(response.data)
+    })
+  }, [])
+
   return (
     <div className="app--container">
       <div className='register--container'>
@@ -44,6 +55,21 @@ function App() {
 
         <button className='register--button' onClick={createProduct} >Cadastrar Produto</button>
       </div>
+      
+      {typeof listProdutos !== "undefined" && 
+        listProdutos.map((value) => {
+       return (
+        <Lista 
+        key={value.cod_produto} 
+        listLista= {listProdutos} 
+        setLista = {setListProdutos}
+        cod_produto={value.cod_produto}
+        nome_produto={value.nome_produto}
+        quantidade={value.quantidade}
+        preco_custo={value.preco_custo}
+        preco_venda={value.preco_venda}>
+        </Lista>
+        )})}
       
     </div>
   );
