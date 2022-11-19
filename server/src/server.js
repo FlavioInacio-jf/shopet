@@ -7,7 +7,7 @@ const routes = require('./rountes');
 const server = express();
 server.use(cors());
 server.use(bodyParser.urlencoded({extended: false}));
-
+server.use(bodyParser.json());
 server.use('/api', routes);
 
 server.listen(process.env.PORT, ()=>{

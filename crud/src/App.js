@@ -1,7 +1,8 @@
 import React, {useState} from "react"
-import Axios from "axios"
+import axios from "axios"
 import './App.css';
 
+const baseURL = "http://localhost:3001/api"
 function App() {
   const [values, setValues] = useState()
 
@@ -12,17 +13,20 @@ function App() {
     }))
   }
 
-  const pegarInfoButt = () =>{
-    Axios.post("http://localhost:3001/Api/inserirProduto", {
-      nome: values.nome_produto,
-      quantidade: values.quantidade,
-      preco_custo: values.preco_custo,
-      preco_venda: values.preco_venda,
-      cod_produto: values.cod_produto
-    }).then((response) =>{
-      console.log(response)
-    })
+  function createProduct() {
+    let json = {}
+
+    json.name = values.nome_produto;
+    json.quantidade =values.quantidade;
+    json.preco_custo =values.preco_custo;
+    json.preco_venda =values.preco_venda;
+    json.cod_produto = values.cod_produto;
+
+    axios.post(`${baseURL}/inserirProduto`, json).then((response) => {
+      console.log(response.data)
+    });
   }
+
   return (
     <div className="app--container">
       <div className='register--container'>
@@ -38,7 +42,7 @@ function App() {
 
         <input type="text" name="cod_produto" placeholder='código do produto' className='register--input' onChange={pegarInfo}/>
 
-        <button className='register--button' onClick ={() => pegarInfoButt()} >Cadastrar Produto</button>
+        <button className='register--button' onClick={createProduct} >Cadastrar Produto</button>
       </div>
       
     </div>

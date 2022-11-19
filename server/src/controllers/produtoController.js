@@ -32,8 +32,8 @@ module.exports = {
     inserir: async(req, res) =>{
         let json = {error: '', result: {}}
 
-        let nome_produto = req.body.nome_produto
-        let quant_estoque = req.body.quant_estoque
+        let nome_produto = req.body.name
+        let quant_estoque = req.body.quantidade
         let preco_custo = req.body.preco_custo
         let preco_venda = req.body.preco_venda
 
