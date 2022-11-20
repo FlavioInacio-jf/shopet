@@ -8,7 +8,7 @@ const baseURL = "http://localhost:3001/api"
 
 function App() {
   const [values, setValues] = useState()
-  const [listProdutos, setListProdutos] = useState()
+  const [listProdutos, setListProdutos] = useState([])
   console.log(listProdutos)
 
   const pegarInfo = (value) =>{
@@ -57,18 +57,18 @@ function App() {
       </div>
       
       {typeof listProdutos !== "undefined" && 
-        listProdutos.map((value) => {
+        [listProdutos].map((value, i) => {
        return (
         <Lista 
-        key={value.cod_produto} 
+        key={i} 
         listLista= {listProdutos} 
         setLista = {setListProdutos}
         cod_produto={value.cod_produto}
         nome_produto={value.nome_produto}
         quantidade={value.quantidade}
         preco_custo={value.preco_custo}
-        preco_venda={value.preco_venda}>
-        </Lista>
+        preco_venda={value.preco_venda}
+        ></Lista>
         )})}
       
     </div>
