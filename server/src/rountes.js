@@ -9,5 +9,4 @@ rounter.post('/inserirProduto', produtoController.inserir)
 rounter.put('/alterarProduto/:cod_produto', produtoController.alterar)
 rounter.delete('/excluirProduto/:cod_produto', produtoController.excluir)
 
-
 module.exports = rounter;

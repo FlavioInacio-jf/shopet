@@ -2,8 +2,6 @@ import React, {useState, useEffect} from "react"
 import axios from "axios"
 import './App.css';
 
-import Lista from "./componentes/lista";
-
 const baseURL = "http://localhost:3001/api"
 
 function App() {
@@ -27,7 +25,7 @@ function App() {
     json.preco_venda =values.preco_venda;
     json.cod_produto = values.cod_produto;
 
-    axios.post(`${baseURL}/inserirProduto`, json).then((response) => {
+    axios.post(`${baseURL}/inserirProduto`, json).tden((response) => {
       console.log(response.data)
     });
   }
@@ -55,22 +53,6 @@ function App() {
 
         <button className='register--button' onClick={createProduct} >Cadastrar Produto</button>
       </div>
-      
-      {typeof listProdutos !== "undefined" && 
-        [listProdutos].map((value, i) => {
-       return (
-        <Lista 
-        key={i} 
-        listLista= {listProdutos} 
-        setLista = {setListProdutos}
-        cod_produto={value.cod_produto}
-        nome_produto={value.nome_produto}
-        quantidade={value.quantidade}
-        preco_custo={value.preco_custo}
-        preco_venda={value.preco_venda}
-        ></Lista>
-        )})}
-      
     </div>
   );
 }
