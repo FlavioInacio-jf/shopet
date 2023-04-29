@@ -1,15 +1,11 @@
-require("dotenv").config({ path: "variaveis.env" });
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
+const { app } = require("./app");
+const { appDataSource } = require("./app/config");
 
-const routes = require("./rountes");
-const server = express();
-server.use(cors());
-server.use(bodyParser.urlencoded({ extended: false }));
-server.use(bodyParser.json());
-server.use("/api", routes);
-
-server.listen(process.env.PORT, () => {
-  console.log(`Servidor rodando em: http://localhost:${process.env.PORT}`);
-});
+appDataSource
+  .initialize()
+  .then(() => {
+    app.listen(process.env.PORT, () =>
+      console.log(`Servidor rodando em: http://localhost:${process.env.PORT}`),
+    );
+  })
+  .catch(error => console.log(error));
