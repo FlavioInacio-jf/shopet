@@ -5,6 +5,7 @@ COPY package.json package-lock.json ./
 
 RUN npm cache clean --force
 RUN npm install --only=development
+RUN npm install nodemon -g --save
 
 COPY . .
 
