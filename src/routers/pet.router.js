@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const { petController } = require("../controllers");
+
 const petRouters = Router();
 
 petRouters.get("/", (req, res) => res.json("Em construção..."));

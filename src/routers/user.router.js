@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const { userController } = require("../controllers");
+
 const userRouter = Router();
 
 userRouter.get("/", (req, res) => res.json("Em construção..."));
