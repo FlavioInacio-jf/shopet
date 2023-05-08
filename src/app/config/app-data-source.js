@@ -4,7 +4,7 @@ const { DataSource } = require("typeorm");
 dotenv.config({ path: ".env" });
 
 const appDataSource = new DataSource({
-  type: "postgres",
+  type: "mysql",
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   username: process.env.DB_USER,
@@ -12,7 +12,10 @@ const appDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: true,
-  entities: [`./src/modules/**/*.entity.ts`],
+  entities: [
+    require("../../entities/pet.entitie"),
+    require("../../entities/user.entitie"),
+  ],
   migrations: [],
   migrationsRun: true,
 });
