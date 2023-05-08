@@ -1,5 +1,5 @@
 {
-  "name": "projetobd",
+  "name": "shopet",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -29,5 +29,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": "git@github.com:FlavioInacio-jf/shopet.git"
 }
