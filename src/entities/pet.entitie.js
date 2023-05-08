@@ -43,5 +43,13 @@ module.exports = new EntitySchema({
       type: "float",
       require: true,
     },
+    createdAt: {
+      type: "timestamp",
+      createDate: true,
+    },
+    updatedAt: {
+      type: "timestamp",
+      updateDate: true,
+    },
   },
 });

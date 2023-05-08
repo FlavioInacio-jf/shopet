@@ -8,5 +8,5 @@ RUN npm install --only=development
 
 COPY . .
 
-EXPOSE 3333
-CMD ["yarn", "dev"]
+EXPOSE 8081
+CMD ["npm", "start"]

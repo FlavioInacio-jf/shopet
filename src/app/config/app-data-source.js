@@ -16,7 +16,6 @@ const appDataSource = new DataSource({
     require("../../entities/pet.entitie"),
     require("../../entities/user.entitie"),
   ],
-  migrations: [],
   migrationsRun: true,
 });
 
