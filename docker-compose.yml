@@ -7,9 +7,9 @@ services:
       context: .
       target: development
       dockerfile: ./Dockerfile
-    command: npm run start
+    command: npm start
     ports:
-      - 3333:3333
+      - 8081:8081
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
