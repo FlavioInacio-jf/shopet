@@ -4,7 +4,7 @@ module.exports = new EntitySchema({
   name: "Pet",
   tableName: "pets",
   columns: {
-    id_pet: {
+    pet_id: {
       primary: true,
       type: "int",
       generated: true,
@@ -50,6 +50,13 @@ module.exports = new EntitySchema({
     updatedAt: {
       type: "timestamp",
       updateDate: true,
+    },
+  },
+  relations: {
+    users: {
+      type: "many-to-many",
+      inverseSide: "pets",
+      target: "User",
     },
   },
 });
