@@ -35,9 +35,6 @@ class UsersPets {
     });
     await this.usersPetsRepository.save(relationCreated);
   }
-  async deletePetRelation(pet_id) {
-    //await this.usersPetsRepository.delete();
-  }
   async findAllTutors(pet_id) {
     const pets = await this.usersPetsRepository.find({
       relations: ["users"],

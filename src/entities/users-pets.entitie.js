@@ -30,6 +30,7 @@ module.exports = new EntitySchema({
       },
       inverseSide: "pets",
       onDelete: "CASCADE",
+      onUpdate: "CASCADE",
     },
     users: {
       type: "many-to-one",
@@ -39,7 +40,8 @@ module.exports = new EntitySchema({
         referencedColumnName: "cpf",
       },
       inverseSide: "pets",
-      cascade: true,
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
     },
   },
 });
