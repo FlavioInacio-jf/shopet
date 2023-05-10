@@ -5,6 +5,7 @@ const {
   USER_FOUND_SUCCESSFULLY,
   SUCCESSFULLY_DELETED_USER,
   USERS_FOUND_SUCCESSFULLY,
+  PETS_TUTOR_FOUND_SUCCESSFULLY,
 } = require("../messages");
 
 class UserController {
@@ -39,7 +40,7 @@ class UserController {
     const { params } = req;
 
     const users = await this.userService.getAllPets(params.cpf);
-    const response = new ResponseSingle(USERS_FOUND_SUCCESSFULLY, users);
+    const response = new ResponseSingle(PETS_TUTOR_FOUND_SUCCESSFULLY, users);
     return res.status(201).json(response.getResponseMessage());
   }
   async deleteUser(req, res) {

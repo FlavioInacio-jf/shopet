@@ -38,8 +38,8 @@ class PetController {
   }
   async getAllTutors(req, res) {
     const { params } = req;
-    const pets = await this.petService.getAllTutors(params.id);
-    const response = new ResponseSingle(TUTORS_FOUND_SUCCESSFULLY, pets);
+    const tutors = await this.petService.getAllTutors(params.id);
+    const response = new ResponseSingle(TUTORS_FOUND_SUCCESSFULLY, tutors);
     return res.status(201).json(response.getResponseMessage());
   }
   async deletePet(req, res) {

@@ -51,12 +51,7 @@ class UserService {
     const userExists = await this.findUserByCPF(cpf);
     if (!userExists) throw new NotFoundException(USER_NOT_EXISTS);
 
-    const pets = await this.usersRepository.find({
-      where: { user_cpf: cpf },
-      relations: {
-        users_pets: true,
-      },
-    });
+    const pets = await this.usersPetsService.findAllPets(cpf);
     return pets;
   }
 

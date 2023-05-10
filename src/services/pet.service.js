@@ -34,8 +34,8 @@ class PetService {
     const petExists = await this.petsRepository.findOne({ where: { pet_id } });
     if (!petExists) throw new NotFoundException(PET_NOT_EXISTS);
 
-    const pets = await this.usersPetsService.findAllTutors(pet_id);
-    return pets;
+    const tutors = await this.usersPetsService.findAllTutors(pet_id);
+    return tutors;
   }
   async deletePet(pet_id) {
     const pet = await this.findPetById(pet_id);

@@ -36,11 +36,19 @@ class UsersPets {
     await this.usersPetsRepository.save(relationCreated);
   }
   async findAllTutors(pet_id) {
-    const pets = await this.usersPetsRepository.find({
+    const tutors = await this.usersPetsRepository.find({
       relations: ["users"],
       where: { pet_id },
     });
-    return pets.map(({ users: { senha, login, ...rest } }) => rest);
+    return tutors.map(({ users: { senha, login, ...rest } }) => rest);
+  }
+  async findAllPets(cpf) {
+    const pets = await this.usersPetsRepository.find({
+      relations: ["pets"],
+      where: { user_cpf: cpf },
+    });
+
+    return pets.map(({ pets }) => pets);
   }
   async findUserByCPF(cpf) {
     const userExists = await this.usersRepository.findOne({ where: { cpf } });
