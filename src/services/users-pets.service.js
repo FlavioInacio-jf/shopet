@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const {
   usersPetsRepository,
   usersRepository,
@@ -34,6 +35,13 @@ class UsersPets {
     });
     await this.usersPetsRepository.save(relationCreated);
   }
+  async findAllTutors(pet_id) {
+    const pets = await this.usersPetsRepository.find({
+      relations: ["users"],
+      where: { pet_id },
+    });
+    return pets.map(({ users: { senha, login, ...rest } }) => ({ user: rest }));
+  }
   async findUserByCPF(cpf) {
     const userExists = await this.usersRepository.findOne({ where: { cpf } });
     if (!userExists) throw new NotFoundException(USER_NOT_EXISTS);
@@ -42,7 +50,6 @@ class UsersPets {
   }
   async findPetById(pet_id) {
     const petExists = await this.petsRepository.findOne({ where: { pet_id } });
-    console.log(petExists);
     if (!petExists) throw new NotFoundException(PET_NOT_EXISTS);
     return petExists;
   }

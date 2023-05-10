@@ -345,6 +345,11 @@ module.exports = {
             required: true,
           },
         ],
+        responses: {
+          404: {
+            description: "Pet não encontrado",
+          },
+        },
       },
     },
     "/pets/{id}": {

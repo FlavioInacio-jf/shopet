@@ -30,8 +30,11 @@ class PetService {
     const pets = await this.petsRepository.find();
     return pets;
   }
-  async getAllTutors() {
-    const pets = await this.petsRepository.find();
+  async getAllTutors(pet_id) {
+    const petExists = await this.petsRepository.findOne({ where: { pet_id } });
+    if (!petExists) throw new NotFoundException(PET_NOT_EXISTS);
+
+    const pets = await this.usersPetsService.findAllTutors(pet_id);
     return pets;
   }
   async deletePet(pet_id) {

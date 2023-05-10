@@ -5,6 +5,7 @@ const {
   SUCCESSFULLY_DELETED_PET,
   PET_FOUND_SUCCESSFULLY,
   PETS_FOUND_SUCCESSFULLY,
+  TUTORS_FOUND_SUCCESSFULLY,
 } = require("../messages");
 
 class PetController {
@@ -38,7 +39,7 @@ class PetController {
   async getAllTutors(req, res) {
     const { params } = req;
     const pets = await this.petService.getAllTutors(params.id);
-    const response = new ResponseSingle(PETS_FOUND_SUCCESSFULLY, pets);
+    const response = new ResponseSingle(TUTORS_FOUND_SUCCESSFULLY, pets);
     return res.status(201).json(response.getResponseMessage());
   }
   async deletePet(req, res) {
