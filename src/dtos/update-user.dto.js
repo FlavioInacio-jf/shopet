@@ -13,7 +13,7 @@ const updateUserDto = [
     })
     .withMessage({
       min: validationMessage.isString.minLenght(11),
-      max: validationMessage.isString.minLenght(255),
+      max: validationMessage.isString.maxLenght(255),
     }),
   body("telefone")
     .isString()
@@ -26,7 +26,7 @@ const updateUserDto = [
     })
     .withMessage({
       min: validationMessage.isString.minLenght(11),
-      max: validationMessage.isString.minLenght(13),
+      max: validationMessage.isString.maxLenght(13),
     }),
   body("email")
     .isEmail()
@@ -44,7 +44,7 @@ const updateUserDto = [
     })
     .withMessage({
       min: validationMessage.isString.minLenght(11),
-      max: validationMessage.isString.minLenght(45),
+      max: validationMessage.isString.maxLenght(45),
     }),
   body("senha")
     .isString()
@@ -57,7 +57,7 @@ const updateUserDto = [
     })
     .withMessage({
       min: validationMessage.isString.minLenght(8),
-      max: validationMessage.isString.minLenght(45),
+      max: validationMessage.isString.maxLenght(45),
     }),
   body("cep")
     .isString()
@@ -70,7 +70,7 @@ const updateUserDto = [
     })
     .withMessage({
       min: validationMessage.isString.minLenght(9),
-      max: validationMessage.isString.minLenght(9),
+      max: validationMessage.isString.maxLenght(9),
     }),
 ];
 

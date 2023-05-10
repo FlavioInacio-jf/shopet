@@ -14,7 +14,7 @@ const createUserDto = [
     })
     .withMessage({
       min: validationMessage.isString.minLenght(11),
-      max: validationMessage.isString.minLenght(11),
+      max: validationMessage.isString.maxLenght(11),
     }),
   body("nome")
     .exists()
@@ -29,7 +29,7 @@ const createUserDto = [
     })
     .withMessage({
       min: validationMessage.isString.minLenght(11),
-      max: validationMessage.isString.minLenght(255),
+      max: validationMessage.isString.maxLenght(255),
     }),
   body("telefone")
     .exists()
@@ -44,7 +44,7 @@ const createUserDto = [
     })
     .withMessage({
       min: validationMessage.isString.minLenght(11),
-      max: validationMessage.isString.minLenght(13),
+      max: validationMessage.isString.maxLenght(13),
     }),
   body("email")
     .exists()
@@ -66,7 +66,7 @@ const createUserDto = [
     })
     .withMessage({
       min: validationMessage.isString.minLenght(11),
-      max: validationMessage.isString.minLenght(45),
+      max: validationMessage.isString.maxLenght(45),
     }),
   body("senha")
     .exists()
@@ -81,7 +81,7 @@ const createUserDto = [
     })
     .withMessage({
       min: validationMessage.isString.minLenght(8),
-      max: validationMessage.isString.minLenght(45),
+      max: validationMessage.isString.maxLenght(45),
     }),
   body("cep")
     .exists()
@@ -96,7 +96,7 @@ const createUserDto = [
     })
     .withMessage({
       min: validationMessage.isString.minLenght(9),
-      max: validationMessage.isString.minLenght(9),
+      max: validationMessage.isString.maxLenght(9),
     }),
 ];
 

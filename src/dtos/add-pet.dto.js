@@ -16,7 +16,7 @@ const addPetDto = [
     })
     .withMessage({
       min: validationMessage.isString.minLenght(11),
-      max: validationMessage.isString.minLenght(11),
+      max: validationMessage.isString.maxLenght(11),
     }),
   body("nome")
     .exists()

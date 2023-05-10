@@ -11,11 +11,11 @@ const validationMessage = {
   },
   isString: {
     minLenght: lenght =>
-      `o campo de ter no minimo ${lenght} ${
+      `o campo deve no minimo ${lenght} ${
         lenght > 1 ? "caracteres" : "caracter"
       }`,
     maxLenght: lenght =>
-      `o campo de ter no máximo ${lenght} ${
+      `o campo deve ter no máximo ${lenght} ${
         lenght > 1 ? "caracteres" : "caracter"
       }`,
   },

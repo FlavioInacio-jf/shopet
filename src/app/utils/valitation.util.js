@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const { ForbiddenException } = require("../exceptions");
+const { ValidationException } = require("../exceptions");
 
 const validation = async (req, res, next) => {
   const errorFormatter = ({ msg, param }) => ({
@@ -10,7 +10,7 @@ const validation = async (req, res, next) => {
   const result = validationResult(req).formatWith(errorFormatter);
 
   if (!result.isEmpty()) {
-    throw new ForbiddenException({
+    throw new ValidationException({
       message: "Existem campos que não foram preenchidos corretamente",
       errors: result.array({ onlyFirstError: true }),
     });
