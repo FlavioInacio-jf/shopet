@@ -3,6 +3,21 @@ const { validationMessage } = require("../app/exceptions");
 const { Sex } = require("../enums");
 
 const addPetDto = [
+  body("user_cpf")
+    .exists()
+    .withMessage(validationMessage.geral.isRequired)
+    .isString()
+    .withMessage(validationMessage.geral.isString)
+    .notEmpty({ ignore_whitespace: true })
+    .withMessage(validationMessage.geral.notEmpty)
+    .isLength({
+      min: 11,
+      max: 11,
+    })
+    .withMessage({
+      min: validationMessage.isString.minLenght(11),
+      max: validationMessage.isString.minLenght(11),
+    }),
   body("nome")
     .exists()
     .withMessage(validationMessage.geral.isRequired)
