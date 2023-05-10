@@ -11,7 +11,7 @@ class PetService {
     await this.petRepository.save(petCreated);
     return petCreated;
   }
-  async updateUser(pet_id, pet) {
+  async updatePet(pet_id, pet) {
     let petExists = this.petsRepository.findPetById(pet_id);
     petExists = { ...petExists, ...pet };
 
@@ -28,7 +28,10 @@ class PetService {
     const pets = await this.petsRepository.find();
     return pets;
   }
-
+  async getAllTutors() {
+    const pets = await this.petsRepository.find();
+    return pets;
+  }
   async deletePet(pet_id) {
     const pet = await this.findPetById(pet_id);
     await this.petsRepository.delete(pet_id);

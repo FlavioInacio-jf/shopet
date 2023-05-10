@@ -3,10 +3,11 @@ const { petController } = require("../controllers");
 
 const petRouters = Router();
 
-petRouters.get("/", (req, res) => res.json("Em construção..."));
-petRouters.get("/:id", (req, res) => res.json("Em construção..."));
-petRouters.post("/", (req, res) => res.json("Em construção..."));
-petRouters.put("/:id", (req, res) => res.json("Em construção..."));
-petRouters.delete(":id", (req, res) => res.json("Em construção..."));
+petRouters.get("/", petController.getAllPets);
+petRouters.get("/:id", petController.findPetById);
+petRouters.get("/:id/tutores", petController.getAllTutors);
+petRouters.post("/", petController.addPet);
+petRouters.patch("/:id", petController.updatePet);
+petRouters.delete(":id", petController.deletePet);
 
 module.exports = petRouters;

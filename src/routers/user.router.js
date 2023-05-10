@@ -3,10 +3,11 @@ const { userController } = require("../controllers");
 
 const userRouter = Router();
 
-userRouter.get("/", (req, res) => res.json("Em construção..."));
-userRouter.get("/:id", (req, res) => res.json("Em construção..."));
-userRouter.post("/", (req, res) => res.json("Em construção..."));
-userRouter.put("/:id", (req, res) => res.json("Em construção..."));
-userRouter.delete(":id", (req, res) => res.json("Em construção..."));
+userRouter.get("/", userController.getAllUsers);
+userRouter.get("/:cpf", userController.findUserByCPF);
+userRouter.get("/:cpf/pets", userController.getAllPets);
+userRouter.post("/", userController.getAllUsers);
+userRouter.patch("/:id", userController.updateUser);
+userRouter.delete(":id", userController.deleteUser);
 
 module.exports = userRouter;

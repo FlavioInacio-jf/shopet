@@ -37,6 +37,10 @@ class UserService {
     const users = await this.usersRepository.find();
     return users;
   }
+  async getAllPets() {
+    const users = await this.usersRepository.find();
+    return users;
+  }
 
   async deleteUser(cpf) {
     const user = await this.findPetById(cpf);
