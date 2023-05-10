@@ -1,14 +1,18 @@
 const { petsRepository } = require("../repositories");
 const { NotFoundException } = require("../app/exceptions");
-const { PET_NOT_EXISTS } = require("../app/exceptions");
+const { PET_NOT_EXISTS, USER_NOT_EXISTS } = require("../app/exceptions");
 
 class PetService {
-  constructor() {
+  constructor(userService) {
     this.petsRepository = petsRepository;
+    this.userService = userService;
   }
   async addPet(pet) {
+    const userExists = await this.userService.findUserByCPF(pet.user_cpf);
+    if (!userExists) throw new NotFoundException(USER_NOT_EXISTS);
+
     const petCreated = this.petsRepository.create(pet);
-    await this.petRepository.save(petCreated);
+    await this.petsRepository.save(petCreated);
     return petCreated;
   }
   async updatePet(pet_id, pet) {

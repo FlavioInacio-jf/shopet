@@ -57,12 +57,13 @@ module.exports = new EntitySchema({
         name: "users_pets",
         joinColumn: {
           name: "user_cpf",
+          referencedColumnName: "cpf",
         },
         inverseJoinColumn: {
           name: "pet_id",
+          referencedColumnName: "pet_id",
         },
       },
-      inverseSide: "User",
       persistence: false,
       cascade: true,
     },
