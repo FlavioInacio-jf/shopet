@@ -32,7 +32,7 @@ module.exports = new EntitySchema({
     },
     data_nascimento: {
       type: "varchar",
-      length: 9,
+      length: 10,
       require: true,
     },
     peso: {

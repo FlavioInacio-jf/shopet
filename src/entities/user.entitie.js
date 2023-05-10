@@ -8,6 +8,7 @@ module.exports = new EntitySchema({
       primary: true,
       type: "varchar",
       generated: false,
+      length: 11,
       require: true,
     },
     nome: {
@@ -22,7 +23,6 @@ module.exports = new EntitySchema({
     },
     email: {
       type: "varchar",
-      length: 45,
       require: true,
     },
     login: {

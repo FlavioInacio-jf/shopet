@@ -1,4 +1,4 @@
-const HttpException = require('./http.exception');
+const HttpException = require("./http.exception");
 
 class ForbiddenException extends HttpException {
   constructor(errors) {
