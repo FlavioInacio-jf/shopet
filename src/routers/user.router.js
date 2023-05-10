@@ -10,7 +10,7 @@ userRouter.get("/:cpf/pets", userController.getAllPets.bind(userController));
 userRouter.post(
   "/",
   createUserDto,
-  userController.getAllUsers.bind(userController),
+  userController.addUser.bind(userController),
 );
 userRouter.patch(
   "/:cpf",

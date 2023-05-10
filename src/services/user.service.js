@@ -9,9 +9,7 @@ class UserService {
     this.usersRepository = usersRepository;
   }
   async addUser(user) {
-    const userAlreadyExistis = await this.usersRepository.findUserByCPF(
-      user.cpf,
-    );
+    const userAlreadyExistis = await this.findUserByCPF(user.cpf);
 
     if (userAlreadyExistis) throw new ForbiddenException(USER_ALREADY_EXISTS);
 
@@ -28,15 +26,15 @@ class UserService {
       user.senha = passwordHash;
     }
     let userExists = this.usersRepository.findUserByCPF(cpf);
+    if (!userExists) throw new NotFoundException(USER_NOT_EXISTS);
+
     userExists = { ...userExists, ...user };
 
     await this.usersRepository.update(userExists);
     return userExists;
   }
   async findUserByCPF(cpf) {
-    const userExists = await this.usersRepository.findOne(cpf);
-
-    if (!userExists) throw new NotFoundException(USER_NOT_EXISTS);
+    const userExists = await this.usersRepository.findOne({ where: { cpf } });
     return userExists;
   }
   async getAllUsers() {
@@ -49,12 +47,14 @@ class UserService {
   }
 
   async deleteUser(cpf) {
-    const user = await this.findPetById(cpf);
+    const userExists = await this.findPetById(cpf);
+    if (!userExists) throw new NotFoundException(USER_NOT_EXISTS);
+
     await this.usersRepository.delete(cpf);
-    return user;
+    return userExists;
   }
 
-  async generateHashPasswords(password) {
+  static async generateHashPasswords(password) {
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
     const passwordHash = bcrypt.hash(password, salt);
