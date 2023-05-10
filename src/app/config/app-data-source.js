@@ -15,6 +15,7 @@ const appDataSource = new DataSource({
   entities: [
     require("../../entities/pet.entitie"),
     require("../../entities/user.entitie"),
+    require("../../entities/users-pets.entitie"),
   ],
   migrationsRun: true,
 });

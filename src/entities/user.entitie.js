@@ -49,23 +49,4 @@ module.exports = new EntitySchema({
       updateDate: true,
     },
   },
-  relations: {
-    pets: {
-      type: "many-to-many",
-      target: "Pet",
-      joinTable: {
-        name: "users_pets",
-        joinColumn: {
-          name: "user_cpf",
-          referencedColumnName: "cpf",
-        },
-        inverseJoinColumn: {
-          name: "pet_id",
-          referencedColumnName: "pet_id",
-        },
-      },
-      persistence: false,
-      cascade: true,
-    },
-  },
 });

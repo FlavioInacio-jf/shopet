@@ -52,11 +52,4 @@ module.exports = new EntitySchema({
       updateDate: true,
     },
   },
-  relations: {
-    users: {
-      type: "many-to-many",
-      inverseSide: "pets",
-      target: "User",
-    },
-  },
 });

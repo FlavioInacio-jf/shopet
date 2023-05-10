@@ -1,10 +1,13 @@
 const PetService = require("./pet.service");
 const UserService = require("./user.service");
+const UsersPetsService = require("./users-pets.service");
 
-const userService = new UserService();
-const petService = new PetService(userService);
+const usersPetsService = new UsersPetsService();
+const userService = new UserService(usersPetsService);
+const petService = new PetService(usersPetsService);
 
 module.exports = {
   petService,
   userService,
+  usersPetsService,
 };
