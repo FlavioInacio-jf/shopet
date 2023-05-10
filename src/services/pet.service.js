@@ -15,14 +15,13 @@ class PetService {
     return petCreated;
   }
   async updatePet(pet_id, pet) {
-    let petExists = this.petsRepository.findPetById(pet_id);
-    petExists = { ...petExists, ...pet };
+    const petExists = this.findPetById(pet_id);
 
-    await this.usersRepository.update(petExists);
-    return petExists;
+    await this.petsRepository.update(pet_id, pet);
+    return { ...petExists, ...pet };
   }
   async findPetById(pet_id) {
-    const petExists = await this.petsRepository.findOne(pet_id);
+    const petExists = await this.petsRepository.findOne({ where: { pet_id } });
 
     if (!petExists) throw new NotFoundException(PET_NOT_EXISTS);
     return petExists;

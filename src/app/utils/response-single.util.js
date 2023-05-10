@@ -6,7 +6,7 @@ class ResponseSingle {
   getResponseMessage() {
     return {
       message: this.message,
-      data: this.data,
+      result: this.data,
     };
   }
 }

@@ -5,8 +5,9 @@ const { NotFoundException, ForbiddenException } = require("../app/exceptions");
 const { USER_NOT_EXISTS, USER_ALREADY_EXISTS } = require("../app/exceptions");
 
 class UserService {
-  constructor() {
+  constructor(usersPetsService) {
     this.usersRepository = usersRepository;
+    this.usersPetsService = usersPetsService;
   }
   async addUser(user) {
     const userAlreadyExistis = await this.findUserByCPF(user.cpf);
@@ -43,7 +44,7 @@ class UserService {
     return userExists;
   }
   async getAllUsers() {
-    const users = await this.usersRepository.find();
+    const users = await this.usersRepository.find({});
     return users;
   }
   async getAllPets(cpf) {

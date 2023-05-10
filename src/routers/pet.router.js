@@ -13,6 +13,6 @@ petRouters.patch(
   updatePetDto,
   petController.updatePet.bind(petController),
 );
-petRouters.delete(":id", petController.deletePet.bind(petController));
+petRouters.delete("/:id", petController.deletePet.bind(petController));
 
 module.exports = petRouters;

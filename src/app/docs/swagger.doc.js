@@ -29,6 +29,7 @@ module.exports = {
         tags: ["users"],
         summary: "Get all users",
         description: "Get all users registered in the system",
+        responses: {},
       },
       post: {
         tags: ["users"],
@@ -250,6 +251,7 @@ module.exports = {
         tags: ["pets"],
         summary: "Get all pets",
         description: "Get all pets registered in the system",
+        responses: {},
       },
       post: {
         tags: ["pets"],
