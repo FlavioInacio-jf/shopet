@@ -39,6 +39,7 @@ class PetService {
   }
   async deletePet(pet_id) {
     const pet = await this.findPetById(pet_id);
+
     await this.petsRepository.delete(pet_id);
     return pet;
   }

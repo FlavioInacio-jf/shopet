@@ -29,7 +29,7 @@ module.exports = new EntitySchema({
         referencedColumnName: "pet_id",
       },
       inverseSide: "pets",
-      cascade: true,
+      onDelete: "CASCADE",
     },
     users: {
       type: "many-to-one",
