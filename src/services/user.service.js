@@ -25,13 +25,11 @@ class UserService {
       const passwordHash = await UserService.generateHashPasswords(user.senha);
       user.senha = passwordHash;
     }
-    let userExists = await this.usersRepository.findOne({ where: { cpf } });
+    const userExists = await this.findUserByCPF(cpf);
     if (!userExists) throw new NotFoundException(USER_NOT_EXISTS);
 
-    userExists = { ...userExists, ...user };
-
-    await this.usersRepository.update({});
-    return userExists;
+    await this.usersRepository.update(cpf, user);
+    return { ...userExists, ...user };
   }
   async findUserByCPF(cpf) {
     const userExists = await this.usersRepository.findOne({ where: { cpf } });
