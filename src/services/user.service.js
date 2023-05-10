@@ -1,14 +1,20 @@
 const bcrypt = require("bcrypt");
 
 const { usersRepository } = require("../repositories");
-const { NotFoundException } = require("../app/exceptions");
-const { USER_NOT_EXISTS } = require("../app/exceptions");
+const { NotFoundException, ForbiddenException } = require("../app/exceptions");
+const { USER_NOT_EXISTS, USER_ALREADY_EXISTS } = require("../app/exceptions");
 
 class UserService {
   constructor() {
     this.usersRepository = usersRepository;
   }
   async addUser(user) {
+    const userAlreadyExistis = await this.usersRepository.findUserByCPF(
+      user.cpf,
+    );
+
+    if (userAlreadyExistis) throw new ForbiddenException(USER_ALREADY_EXISTS);
+
     const passwordHash = await UserService.generateHashPasswords(user.senha);
     user.senha = passwordHash;
 

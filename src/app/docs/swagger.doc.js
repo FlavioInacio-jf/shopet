@@ -1,36 +1,32 @@
+const {
+  SUCCESSFULLY_CREATED_USER,
+  SUCCESSFULLY_DELETED_USER,
+  SUCCESSFULLY_UPDATED_USER,
+} = require("../../messages");
+
 module.exports = {
   openapi: "3.0.0",
   info: {
-    title: "Place Dream API",
-    description: "APIREST Place Dream",
+    title: "SHOPET API",
+    description: "API REST SHOPET",
     version: "1.0.0",
     contact: {
-      email: "jflavioinacio22@gmail.com",
+      email:
+        "jflavioinacio22@gmail.com/Danielnatham@gmail.com/adrytvd@gmail.com",
     },
     license: {
       name: "MIT License",
       url: "https://opensource.org/licenses/MIT",
     },
   },
-  components: {
-    securitySchemes: {
-      bearer: {
-        type: "http",
-        scheme: "bearer",
-      },
-    },
-  },
-  security: {
-    bearer: [],
-  },
   paths: {
     "/users": {
+      get: {
+        tags: ["users"],
+        summary: "Get all users",
+        description: "Get all users registered in the system",
+      },
       post: {
-        security: [
-          {
-            bearer: [],
-          },
-        ],
         tags: ["users"],
         summary: "Create a new user",
         description: "Create a new user",
@@ -40,26 +36,39 @@ module.exports = {
               schema: {
                 type: "object",
                 properties: {
-                  name: {
-                    nome: "Nome do usuário",
-                    type: "string",
-                    required: true,
-                  },
                   cpf: {
                     description: "CPF do usuário",
                     type: "string",
                     required: true,
                   },
-                  nascimento: {
-                    description: "Data de nascimento do usuário",
+                  nome: {
+                    nome: "Nome do usuário",
+                    type: "string",
+                    required: true,
+                  },
+                  telefone: {
+                    description: "Telefone do usuário",
                     type: "string",
                     required: false,
                   },
-                },
-                example: {
-                  nome: "Carlos",
-                  cpf: "xxx.xxx.xxx-xx",
-                  nascimento: "xx/xx/xxxx",
+                  email: {
+                    description: "E-mail do usuário",
+                    type: "string",
+                    format: "email",
+                    required: false,
+                  },
+                  login: {
+                    description: "Login do usuário",
+                    required: false,
+                  },
+                  senha: {
+                    description: "Senha do usuário",
+                    required: false,
+                  },
+                  cep: {
+                    description: "CEP do usuário",
+                    required: false,
+                  },
                 },
               },
             },
@@ -67,7 +76,7 @@ module.exports = {
         },
         responses: {
           201: {
-            description: "Usuário criado com sucesso",
+            description: SUCCESSFULLY_CREATED_USER,
           },
           409: {
             description: "Usuário já cadastrado no sistema",
@@ -75,13 +84,15 @@ module.exports = {
         },
       },
     },
+    "/users/{cpf}/pets": {
+      get: {
+        tags: ["users"],
+        summary: "Get all user's pets",
+        description: "Get all user's pets",
+      },
+    },
     "/users/{cpf}": {
       get: {
-        security: [
-          {
-            bearer: [],
-          },
-        ],
         tags: ["users"],
         summary: "Get a single user by CPF",
         description: "Get a single user by CPF",
@@ -96,8 +107,70 @@ module.exports = {
           },
         ],
         responses: {
-          200: {
-            description: "Success",
+          404: {
+            description: "Usuário não encontrado",
+          },
+        },
+      },
+      delete: {
+        tags: ["users"],
+        summary: "Delete user by CPF",
+        description: "Delete user by CPF",
+        responses: {
+          201: {
+            description: SUCCESSFULLY_DELETED_USER,
+          },
+          404: {
+            description: "Usuário não encontrado",
+          },
+        },
+      },
+      patch: {
+        tags: ["users"],
+        summary: "Update user",
+        description: "Update user by CPF",
+        requestBody: {
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  nome: {
+                    nome: "Nome do usuário",
+                    type: "string",
+                    required: true,
+                  },
+                  telefone: {
+                    description: "Telefone do usuário",
+                    type: "string",
+                    required: false,
+                  },
+                  email: {
+                    description: "E-mail do usuário",
+                    type: "string",
+                    format: "email",
+                    required: false,
+                  },
+                  login: {
+                    description: "Login do usuário",
+                    required: false,
+                  },
+                  senha: {
+                    description: "Senha do usuário",
+                    required: false,
+                  },
+                  cep: {
+                    description: "CEP do usuário",
+                    required: false,
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          201: {
+            description: SUCCESSFULLY_UPDATED_USER,
           },
           404: {
             description: "Usuário não encontrado",

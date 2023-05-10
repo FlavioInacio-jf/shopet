@@ -13,7 +13,7 @@ userRouter.post(
   userController.getAllUsers.bind(userController),
 );
 userRouter.patch(
-  "/:id",
+  "/:cpf",
   updateUserDto,
   userController.updateUser.bind(userController),
 );
