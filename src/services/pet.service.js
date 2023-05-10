@@ -1,29 +1,37 @@
-const { petRepository } = require("../repositories");
+const { petsRepository } = require("../repositories");
 const { NotFoundException } = require("../app/exceptions");
+const { PET_NOT_EXISTS } = require("../app/exceptions");
 
 class PetService {
   constructor() {
-    this.petRepository = petRepository;
-  }
-  async findPetById(pet_id) {
-    const petExists = await this.petRepository.findOne(pet_id);
-
-    if (petExists)
-      throw new NotFoundException(["Pet não existe na base de dados"]);
-    return petExists;
-  }
-  async getAllPets() {
-    const pets = await this.petRepository.find();
-    return pets;
+    this.petsRepository = petsRepository;
   }
   async addPet(pet) {
-    const petCreated = this.petRepository.create(pet);
+    const petCreated = this.petsRepository.create(pet);
     await this.petRepository.save(petCreated);
     return petCreated;
   }
+  async updateUser(pet_id, pet) {
+    let petExists = this.petsRepository.findPetById(pet_id);
+    petExists = { ...petExists, ...pet };
+
+    await this.usersRepository.update(petExists);
+    return petExists;
+  }
+  async findPetById(pet_id) {
+    const petExists = await this.petsRepository.findOne(pet_id);
+
+    if (!petExists) throw new NotFoundException(PET_NOT_EXISTS);
+    return petExists;
+  }
+  async getAllPets() {
+    const pets = await this.petsRepository.find();
+    return pets;
+  }
+
   async deletePet(pet_id) {
     const pet = await this.findPetById(pet_id);
-    await this.petRepository.delete(pet_id);
+    await this.petsRepository.delete(pet_id);
     return pet;
   }
 }

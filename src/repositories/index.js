@@ -1,7 +1,7 @@
-const petRepository = require("./pet.repository");
-const userRepository = require("./user.repository");
+const petsRepository = require("./pet.repository");
+const usersRepository = require("./user.repository");
 
 module.exports = {
-  petRepository,
-  userRepository,
+  petsRepository,
+  usersRepository,
 };
