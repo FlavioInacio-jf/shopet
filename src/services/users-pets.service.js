@@ -40,7 +40,7 @@ class UsersPets {
       relations: ["users"],
       where: { pet_id },
     });
-    return pets.map(({ users: { senha, login, ...rest } }) => ({ user: rest }));
+    return pets.map(({ users: { senha, login, ...rest } }) => rest);
   }
   async findUserByCPF(cpf) {
     const userExists = await this.usersRepository.findOne({ where: { cpf } });
