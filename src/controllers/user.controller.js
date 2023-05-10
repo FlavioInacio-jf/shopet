@@ -4,6 +4,7 @@ const {
   SUCCESSFULLY_UPDATED_USER,
   USER_FOUND_SUCCESSFULLY,
   SUCCESSFULLY_DELETED_USER,
+  USERS_FOUND_SUCCESSFULLY,
 } = require("../messages");
 
 class UserController {
@@ -29,8 +30,18 @@ class UserController {
     const response = new ResponseSingle(USER_FOUND_SUCCESSFULLY, user);
     return res.status(201).json(response.getResponseMessage());
   }
-  async getAllUsers(req, res) {}
-  async getAllPets(req, res) {}
+  async getAllUsers(req, res) {
+    const users = await this.userService.getAllUsers();
+    const response = new ResponseSingle(USERS_FOUND_SUCCESSFULLY, users);
+    return res.status(201).json(response.getResponseMessage());
+  }
+  async getAllPets(req, res) {
+    const { params } = req;
+
+    const users = await this.userService.getAllPets(params.cpf);
+    const response = new ResponseSingle(USERS_FOUND_SUCCESSFULLY, users);
+    return res.status(201).json(response.getResponseMessage());
+  }
   async deleteUser(req, res) {
     const { params } = req;
     const user = await this.userService.deleteUser(params.cpf);

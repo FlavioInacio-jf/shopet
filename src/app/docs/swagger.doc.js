@@ -103,23 +103,6 @@ module.exports = {
         },
       },
     },
-    "/users/{cpf}/pets": {
-      get: {
-        tags: ["users"],
-        summary: "Get all user's pets",
-        description: "Get all user's pets",
-      },
-      parameters: [
-        {
-          name: "cpf",
-          in: "path",
-          schema: {
-            type: "string",
-          },
-          required: true,
-        },
-      ],
-    },
     "/users/{cpf}": {
       get: {
         tags: ["users"],
@@ -237,6 +220,28 @@ module.exports = {
           404: {
             description: "Usuário não encontrado",
           },
+        },
+      },
+    },
+    "/users/{cpf}/pets": {
+      get: {
+        tags: ["users"],
+        summary: "Get all user's pets",
+        description: "Get all user's pets",
+      },
+      parameters: [
+        {
+          name: "cpf",
+          in: "path",
+          schema: {
+            type: "string",
+          },
+          required: true,
+        },
+      ],
+      responses: {
+        404: {
+          description: "Usuário não encontrado",
         },
       },
     },

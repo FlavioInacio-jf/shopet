@@ -63,6 +63,7 @@ module.exports = new EntitySchema({
         },
       },
       inverseSide: "User",
+      persistence: false,
       cascade: true,
     },
   },

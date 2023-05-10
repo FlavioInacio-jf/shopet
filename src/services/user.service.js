@@ -25,12 +25,12 @@ class UserService {
       const passwordHash = await UserService.generateHashPasswords(user.senha);
       user.senha = passwordHash;
     }
-    let userExists = this.findUserByCPF(cpf);
+    let userExists = await this.usersRepository.findOne({ where: { cpf } });
     if (!userExists) throw new NotFoundException(USER_NOT_EXISTS);
 
     userExists = { ...userExists, ...user };
 
-    await this.usersRepository.update(userExists);
+    await this.usersRepository.update({});
     return userExists;
   }
   async findUserByCPF(cpf) {
@@ -48,9 +48,12 @@ class UserService {
     const users = await this.usersRepository.find();
     return users;
   }
-  async getAllPets() {
-    const users = await this.usersRepository.find();
-    return users;
+  async getAllPets(cpf) {
+    const userExists = await this.findUserByCPF(cpf);
+    if (!userExists) throw new NotFoundException(USER_NOT_EXISTS);
+
+    const pets = await this.usersRepository.find({ where: { user_cpf: cpf } });
+    return pets;
   }
 
   async deleteUser(cpf) {
