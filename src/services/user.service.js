@@ -25,7 +25,7 @@ class UserService {
       const passwordHash = await UserService.generateHashPasswords(user.senha);
       user.senha = passwordHash;
     }
-    let userExists = this.usersRepository.findUserByCPF(cpf);
+    let userExists = this.findUserByCPF(cpf);
     if (!userExists) throw new NotFoundException(USER_NOT_EXISTS);
 
     userExists = { ...userExists, ...user };
@@ -35,6 +35,13 @@ class UserService {
   }
   async findUserByCPF(cpf) {
     const userExists = await this.usersRepository.findOne({ where: { cpf } });
+
+    return userExists;
+  }
+  async getSingleUser(cpf) {
+    const userExists = await this.findUserByCPF(cpf);
+    if (!userExists) throw new NotFoundException(USER_NOT_EXISTS);
+
     return userExists;
   }
   async getAllUsers() {
@@ -47,10 +54,10 @@ class UserService {
   }
 
   async deleteUser(cpf) {
-    const userExists = await this.findPetById(cpf);
+    const userExists = await this.findUserByCPF(cpf);
     if (!userExists) throw new NotFoundException(USER_NOT_EXISTS);
 
-    await this.usersRepository.delete(cpf);
+    await this.usersRepository.remove(userExists);
     return userExists;
   }
 

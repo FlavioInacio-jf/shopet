@@ -1,5 +1,10 @@
 const { ResponseSingle } = require("../app/utils");
-const { SUCCESSFULLY_CREATED_USER } = require("../messages");
+const {
+  SUCCESSFULLY_CREATED_USER,
+  SUCCESSFULLY_UPDATED_USER,
+  USER_FOUND_SUCCESSFULLY,
+  SUCCESSFULLY_DELETED_USER,
+} = require("../messages");
 
 class UserController {
   constructor(userService) {
@@ -12,11 +17,26 @@ class UserController {
     const response = new ResponseSingle(SUCCESSFULLY_CREATED_USER, user);
     return res.status(200).json(response.getResponseMessage());
   }
-  async updateUser(req, res) {}
-  async findUserByCPF(req, res) {}
+  async updateUser(req, res) {
+    const { body, params } = req;
+    const user = await this.userService.updateUser(params.cpf, body);
+    const response = new ResponseSingle(SUCCESSFULLY_UPDATED_USER, user);
+    return res.status(201).json(response.getResponseMessage());
+  }
+  async findUserByCPF(req, res) {
+    const { params } = req;
+    const user = await this.userService.getSingleUser(params.cpf);
+    const response = new ResponseSingle(USER_FOUND_SUCCESSFULLY, user);
+    return res.status(201).json(response.getResponseMessage());
+  }
   async getAllUsers(req, res) {}
   async getAllPets(req, res) {}
-  async deleteUser(req, res) {}
+  async deleteUser(req, res) {
+    const { params } = req;
+    const user = await this.userService.deleteUser(params.cpf);
+    const response = new ResponseSingle(SUCCESSFULLY_DELETED_USER, user);
+    return res.status(201).json(response.getResponseMessage());
+  }
 }
 
 module.exports = UserController;

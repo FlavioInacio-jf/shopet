@@ -17,6 +17,6 @@ userRouter.patch(
   updateUserDto,
   userController.updateUser.bind(userController),
 );
-userRouter.delete(":id", userController.deleteUser.bind(userController));
+userRouter.delete("/:cpf", userController.deleteUser.bind(userController));
 
 module.exports = userRouter;

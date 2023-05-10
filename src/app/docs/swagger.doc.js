@@ -109,6 +109,16 @@ module.exports = {
         summary: "Get all user's pets",
         description: "Get all user's pets",
       },
+      parameters: [
+        {
+          name: "cpf",
+          in: "path",
+          schema: {
+            type: "string",
+          },
+          required: true,
+        },
+      ],
     },
     "/users/{cpf}": {
       get: {
@@ -135,6 +145,16 @@ module.exports = {
         tags: ["users"],
         summary: "Delete user by CPF",
         description: "Delete user by CPF",
+        parameters: [
+          {
+            name: "cpf",
+            in: "path",
+            schema: {
+              type: "string",
+            },
+            required: true,
+          },
+        ],
         responses: {
           201: {
             description: SUCCESSFULLY_DELETED_USER,
@@ -148,6 +168,16 @@ module.exports = {
         tags: ["users"],
         summary: "Update user",
         description: "Update user by CPF",
+        parameters: [
+          {
+            name: "cpf",
+            in: "path",
+            schema: {
+              type: "string",
+            },
+            required: true,
+          },
+        ],
         requestBody: {
           content: {
             "application/json": {
@@ -298,6 +328,16 @@ module.exports = {
         tags: ["pets"],
         summary: "Catch all owners of a pet",
         description: "Catch all owners of a pet",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            schema: {
+              type: "number",
+            },
+            required: true,
+          },
+        ],
       },
     },
     "/pets/{id}": {
@@ -310,7 +350,7 @@ module.exports = {
             name: "id",
             in: "path",
             schema: {
-              type: "string",
+              type: "number",
             },
             required: true,
           },
@@ -325,6 +365,16 @@ module.exports = {
         tags: ["pets"],
         summary: "Delete pet by id",
         description: "Delete pet by id",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            schema: {
+              type: "number",
+            },
+            required: true,
+          },
+        ],
         responses: {
           201: {
             description: SUCCESSFULLY_DELETED_PET,
@@ -338,6 +388,16 @@ module.exports = {
         tags: ["pets"],
         summary: "Update pet by id",
         description: "Update pet by id",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            schema: {
+              type: "number",
+            },
+            required: true,
+          },
+        ],
         requestBody: {
           content: {
             "application/json": {
